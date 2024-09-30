@@ -36,9 +36,9 @@ function App() {
   return (
     <>
       <h1>Welcome to the Movie Search App!</h1>
-      <input type='text' name='search' value={searchPhrase} onChange={handleSearchChange}/>
+      <input className='search-input' type='text' name='search' value={searchPhrase} onChange={handleSearchChange}/>
       <button style={{marginLeft: '10px'}} onClick={handleSearchClick}>Search!</button>
-      <div style={{maxWidth: '500px'}}>
+      <div className='movie-cards'>
         {movieData && movieData.map(movie => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
     </>
