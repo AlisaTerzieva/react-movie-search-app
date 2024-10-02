@@ -5,8 +5,6 @@ import { MovieCard } from './MovieCard.jsx';
 const baseMovieUrl = 'https://api.themoviedb.org/3/';
 const searchMovieEndpoint = 'search/movie?query=';
 const apiToken = import.meta.env.VITE_THE_MOVIE_DB_API_TOKEN;
-const trendingMoviesEndpoint = 'trending/all/week';
-
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -17,7 +15,11 @@ function App() {
   }
 
   const handleSearchClick = () => {
-    fetch(baseMovieUrl + searchMovieEndpoint + searchPhrase + apiKey)
+    fetch(baseMovieUrl + searchMovieEndpoint + searchPhrase, {
+      headers: {
+        Authorization: 'Bearer ' + apiToken
+      }
+    })
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -30,7 +32,6 @@ function App() {
       }
       const parsedData = data.results.map(res => ({id: res.id, title: res.title, overview: res.overview, poster: res.poster_path, releaseDate: res.release_date}));
       setMovieData(parsedData);
-      console.log(parsedData)
     })
     .catch(error => console.log(error));
   }
