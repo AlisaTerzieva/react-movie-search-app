@@ -4,7 +4,9 @@ import { MovieCard } from './MovieCard.jsx';
 
 const baseMovieUrl = 'https://api.themoviedb.org/3/';
 const searchMovieEndpoint = 'search/movie?query=';
-const apiKey = '&api_key=a14ce3ab36df0507c12c4c5e0daca057';
+const apiToken = import.meta.env.VITE_THE_MOVIE_DB_API_TOKEN;
+const trendingMoviesEndpoint = 'trending/all/week';
+
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState('');
