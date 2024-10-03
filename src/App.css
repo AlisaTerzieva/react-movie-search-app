@@ -10,6 +10,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  scroll-margin-top: 300px;
 }
 
 .search-input {
