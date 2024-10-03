@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { MovieCard } from './MovieCard.jsx';
-import { getMoviesWithSearchPhrase, getTopRatedMoviesWeek } from './api/the-movie-db-client.js';
+import { get } from './api/the-movie-db-client.js';
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getTopRatedMoviesWeek(pageNumber)
+    get({pageNumber, searchPhrase})
       .then(data => {
         setMovieData([...movieData, ...data]);
         setIsLoading(false);
@@ -26,10 +26,16 @@ function App() {
 
   const handleSearchChange = (event) => {
     setSearchPhrase(event.target.value);
+    setPageNumber(1);
+    setMovieData([]);
   }
 
   const handleSearchClick = () => {
-    getMoviesWithSearchPhrase(searchPhrase)
+    const queryParams = {
+      searchPhrase,
+      pageNumber
+    }
+    get(queryParams)
       .then(data => {
       // TODO: Include data checks
       setMovieData(data);
