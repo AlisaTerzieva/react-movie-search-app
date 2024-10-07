@@ -31,28 +31,8 @@ const get = (queryParams) => {
       }
       const parsedData = data.results.map(res => ({id: res.id, title: res.title, overview: res.overview, poster: res.poster_path, releaseDate: res.release_date}));
       return parsedData;
-    });
+    })
+    .catch(err => console.log(err));
 }
-
-// const getTopRatedMoviesWeek = (pageNumber = 1) => {
-//     return fetch(baseMovieUrl + topRatedMoviesEndpoint + pageNumber, {
-//         headers: {
-//           Authorization: 'Bearer ' + apiToken
-//         }
-//       })
-//       .then(response => {
-//         if (response.ok) {
-//           return response.json();
-//         }
-//         throw new Error("HTTP Search request failed with status code: ", response.status)
-//       })
-//       .then(data => {
-//         if (!data) {
-//           throw new Error("Movie Data not found!");
-//         }
-//         const parsedData = data.results.map(res => ({id: res.id, title: res.title, overview: res.overview, poster: res.poster_path, releaseDate: res.release_date}));
-//         return parsedData;
-//       });
-// }
 
 export {get};
