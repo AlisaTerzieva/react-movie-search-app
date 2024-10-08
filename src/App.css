@@ -28,3 +28,16 @@
   padding: 2rem;
   text-align: center;
 }
+
+@media screen and (max-device-width: 600px) {
+  .movie-cards {
+    flex-direction: column;
+  }
+  .search-input {
+    font-size: 3em;
+    height: 1.5em;;
+  }
+  .search-btn {
+    font-size: 3em;
+  }
+}

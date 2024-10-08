@@ -13,9 +13,13 @@ function App() {
   useEffect(() => {
     get({pageNumber, searchPhrase})
       .then(data => {
-        setMovieData([...movieData, ...data]);
-        setIsLoading(false);
-      });
+        if (data) {
+          setMovieData(prevData => [...prevData, ...data]);
+        } else {
+			// TODO: Handle Retry logic, may require refactoring of the API client
+		}
+      })
+      .finally(() => setIsLoading(false));
   }, [pageNumber]);
 
   useEffect(() => {
@@ -55,7 +59,7 @@ function App() {
       <input className='search-input' type='text' name='search' value={searchPhrase} onChange={handleSearchChange}/>
       <button className='search-btn' onClick={handleSearchClick}>Search!</button>
       <div className='movie-cards'>
-        {movieData && movieData.map(movie => <MovieCard key={movie.id} movie={movie}/>)}
+        {movieData && movieData.map((movie, index) => <MovieCard key={index} movie={movie}/>)}
       </div>
       {isLoading && <div>LOADING... {pageNumber}</div>}
     </>
