@@ -1,10 +1,11 @@
 const baseMovieUrl = 'https://api.themoviedb.org/3/';
 const searchMovieEndpoint = 'search/movie?query=';
 const topRatedMoviesEndpoint = 'movie/top_rated?';
+const movieDetailsEndpoint = 'movie/';
 const pageNumberParam = 'page='
 const apiToken = import.meta.env.VITE_THE_MOVIE_DB_API_TOKEN;
 
-const get = (queryParams) => {
+const getList = (queryParams) => {
   let endpoint;
   if (queryParams.searchPhrase) {
     endpoint = `${searchMovieEndpoint}${queryParams.searchPhrase}&${pageNumberParam}${queryParams.pageNumber}`;
@@ -34,4 +35,28 @@ const get = (queryParams) => {
     .catch(err => console.log(err));
 }
 
-export {get};
+const getDetails = (id) => {
+  return fetch(baseMovieUrl + movieDetailsEndpoint + id, {
+      signal: AbortSignal.timeout(5000),
+      headers: {
+        Authorization: 'Bearer ' + apiToken
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("HTTP request for movie details failed with status code: ", response.status)
+    })
+    .then(data => {
+      if (!data) {
+        throw new Error("Movie Details not found!");
+      }
+      console.log(data);
+      const parsedData = {genres: data.genres, overview: data.overview, title: data.title, companies: data.production_companies, budget: data.budget};
+      return parsedData;
+    })
+    .catch(err => console.log(err));
+}
+
+export {getList, getDetails};
