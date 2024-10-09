@@ -1,0 +1,79 @@
+
+.lds-grid,
+.lds-grid div {
+  box-sizing: border-box;
+}
+.lds-grid {
+  display: flex;
+  width: 50em;
+  height: 50em;
+}
+.lds-inner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: inherit;
+    width: inherit;
+}
+.lds-inner-grid div {
+  width: 5em;
+  height: 5em;
+  margin: 4em;
+  border-radius: 50%;
+  background: currentColor;
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 100px;
+  left: 100px;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 100px;
+  left: 200px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  top: 100px;
+  left: 300px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  top: 200px;
+  left: 100px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 200px;
+  left: 200px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 200px;
+  left: 300px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 300px;
+  left: 100px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 300px;
+  left: 200px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 300px;
+  left: 300px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+

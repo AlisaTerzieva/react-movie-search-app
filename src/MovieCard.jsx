@@ -1,3 +1,4 @@
+import "./MovieCard.css";
 import { Link } from "react-router-dom";
 
 export const MovieCard = ({movie}) => {
@@ -6,9 +7,8 @@ export const MovieCard = ({movie}) => {
         <Link to={`/details/${movie.id}`}>
             <article className="movie-card">
                 <h2>{movie.title}</h2>
-                <p>Date Released: {movie.releaseDate}</p>
+                <h3>Date Released: {movie.releaseDate}</h3>
                 <img src={posterBaseUrl + movie.poster} />
-                {/* <p style={{textWrap: 'balance'}}>Overview {movie.overview}</p> */}
             </article>
         </Link>
     )
